@@ -1,47 +1,46 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Valbix – Valoración Inteligente</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-      background-color: #f9f9f9;
-      color: #111;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 60px 20px;
-    }
-    h1 {
-      font-size: 3em;
-      margin-bottom: 0.3em;
-    }
-    p {
-      font-size: 1.3em;
-      max-width: 700px;
-      text-align: center;
-      margin-bottom: 2em;
-    }
-    .button {
-      background-color: #111;
-      color: white;
-      padding: 14px 28px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: 0.3s;
-    }
-    .button:hover {
-      background-color: #333;
-    }
-  </style>
+  <link rel="stylesheet" href="/styles/main.css" />
 </head>
 <body>
-  <h1>Valbix</h1>
-  <p>La plataforma definitiva para valorar vehículos usados con inteligencia artificial, pensada para concesionarios profesionales.</p>
-  <a class="button" href="#">Solicita tu demo</a>
+  <header>
+    <img src="/public/img/valbix-logo.jpg" alt="Valbix" width="160" />
+    <h1>Valbix</h1>
+    <p>Herramienta profesional de valoración inteligente de vehículos usados.</p>
+    <a href="/private/login.html" class="button">Acceso profesional</a>
+  </header>
+
+  <main>
+    <section>
+      <h2>¿Por qué Valbix?</h2>
+      <ul>
+        <li>Valoración con IA entrenada en miles de datos reales</li>
+        <li>Depreciación futura estimada</li>
+        <li>Precios de referencia para particulares y profesionales</li>
+        <li>Historial dinámico y comparador inteligente</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Solicita acceso</h2>
+      <form id="contactForm">
+        <input type="text" name="nombre" placeholder="Tu nombre" required />
+        <input type="email" name="email" placeholder="Tu email" required />
+        <textarea name="mensaje" placeholder="Tu mensaje" required></textarea>
+        <button type="submit">Enviar</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Valbix. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="/scripts/contact.js"></script>
 </body>
 </html>
+
