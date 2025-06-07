@@ -2,8 +2,7 @@
 const SUPABASE_URL = "https://xoaeinwfcawcwqtnchun.supabase.co";
 const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhvYWVpbndmY2F3Y3dxdG5jaHVuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDkxNDExNzIsImV4cCI6MjA2NDcxNzE3Mn0.fFa8_8nu1AWzjmzbDImh0n-NGEc6ydw9H96HNEHcwSw";
 
-const { createClient } = supabase;
-const supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY);
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 document.getElementById("contactForm").addEventListener("submit", async function (e) {
   e.preventDefault();
@@ -24,8 +23,20 @@ document.getElementById("contactForm").addEventListener("submit", async function
   if (error) {
     console.error("Error al enviar el formulario:", error.message);
     alert("Hubo un error al enviar tu mensaje. Inténtalo más tarde.");
-  } else {
+    return;
+  }
+
+  // Envía correo mediante la API del servidor
+  try {
+    await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ nombre, email, mensaje }),
+    });
     alert("Mensaje enviado con éxito. ¡Gracias por contactarnos!");
     this.reset();
+  } catch (err) {
+    console.error(err);
+    alert("Error al enviar correo. Inténtalo más tarde.");
   }
 });
