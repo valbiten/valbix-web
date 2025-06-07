@@ -4,17 +4,38 @@ const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZ
 
 const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-// Login
 const form = document.getElementById('loginForm');
+const errorMsg = document.createElement('p');
+errorMsg.id = 'errorMsg';
+errorMsg.style.color = 'red';
+form.insertAdjacentElement('afterend', errorMsg);
+
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
+
   const email = form.email.value.trim();
   const password = form.password.value;
-  const { error } = await supabase.auth.signInWithPassword({ email, password });
-  if (error) {
-    alert('Error: ' + error.message);
+
+  const { data: user, error } = await supabase
+    .from('usuarios')
+    .select('email, password, rol')
+    .eq('email', email)
+    .single();
+
+  if (error || !user || user.password !== password) {
+    errorMsg.textContent = 'Email o contraseña incorrectos';
+    return;
+  }
+
+  localStorage.setItem('email', user.email);
+  localStorage.setItem('rol', user.rol);
+
+  if (user.rol === 'admin') {
+    window.location.href = '/control-panel';
+  } else if (user.rol === 'pro' || user.rol === 'free') {
+    window.location.href = '/dashboard';
   } else {
-    window.location.href = 'dashboard.html';
+    window.location.href = '/dashboard';
   }
 });
 
