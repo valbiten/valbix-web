@@ -1,19 +1,20 @@
-const SUPABASE_URL = "https://xoaeinwfcawcwqtnchun.supabase.co";
-const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZ" +
-  "SIsInJlZiI6InhvYWVpbndmY2F3Y3dxdG5jaHVuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDkxNDExNzIsImV4cCI6MjA2NDcxNzE3Mn0.fFa8_8nu1AWzjmzbDImh0n-NGEc6ydw9H96HNEHcwSw";
+document.addEventListener('DOMContentLoaded', async () => {
+  const token = localStorage.getItem('token');
+  if (!token) {
+    window.location.href = '/login';
+    return;
+  }
 
-const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+  const response = await fetch('/api/user', {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
-async function loadMetrics() {
-  const { data: users } = await supabase.from('users').select('*');
-  const metricsDiv = document.getElementById('metrics');
-  metricsDiv.innerHTML = `<p>Usuarios registrados: ${users ? users.length : 0}</p>`;
-}
+  const data = await response.json();
+  if (!data.success) {
+    window.location.href = '/login';
+  }
 
-loadMetrics();
-
-const logoutBtn = document.getElementById('logoutBtn');
-logoutBtn.addEventListener('click', async () => {
-  await supabase.auth.signOut();
-  window.location.href = 'index.html';
+  document.getElementById('welcomeMessage').innerText = `Hola, ${data.user.name}`;
 });
