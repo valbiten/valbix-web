@@ -1,0 +1,25 @@
+body {
+  background-color: #f4f6f8;
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.panel-header {
+  background-color: #20232a;
+  color: white;
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+}
+
+.panel-container {
+  padding: 2rem;
+}
+
+.card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}

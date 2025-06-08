@@ -1,16 +1,29 @@
 const express = require("express");
 const cors = require("cors");
 const nodemailer = require("nodemailer");
-const bodyParser = require("body-parser");
+const { createClient } = require("@supabase/supabase-js");
 require("dotenv").config();
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());
+app.use(express.static("."));
 
-// Ruta para enviar correos desde formulario
+const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
+
+const transporter = nodemailer.createTransport({
+  host: process.env.EMAIL_HOST,
+  port: parseInt(process.env.EMAIL_PORT, 10),
+  secure: process.env.EMAIL_SECURE === "true",
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
+});
+
+// Ruta para enviar correos desde el formulario
 app.post("/send-email", async (req, res) => {
   const { name, email, message } = req.body;
 
@@ -18,28 +31,20 @@ app.post("/send-email", async (req, res) => {
     return res.status(400).send("Faltan campos requeridos.");
   }
 
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to: process.env.EMAIL_TO || process.env.EMAIL_USER,
+    subject: `📩 Nuevo mensaje de contacto de ${name}`,
+    html: `
+      <h3>Mensaje recibido en Valbix:</h3>
+      <p><strong>Nombre:</strong> ${name}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Mensaje:</strong></p>
+      <p>${message}</p>
+    `,
+  };
+
   try {
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-    });
-
-    const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: process.env.EMAIL_TO || process.env.EMAIL_USER,
-      subject: `\ud83d\udce9 Nuevo mensaje de contacto de ${name}`,
-      html: `
-        <h3>Mensaje recibido en Valbix:</h3>
-        <p><strong>Nombre:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Mensaje:</strong></p>
-        <p>${message}</p>
-      `,
-    };
-
     await transporter.sendMail(mailOptions);
     res.status(200).send("Correo enviado correctamente.");
   } catch (error) {
