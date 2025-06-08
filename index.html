@@ -1,26 +1,22 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Valbix – Valoración Inteligente</title>
-  <meta name="description" content="Herramienta profesional de valoración inteligente de vehículos usados." />
-  <meta property="og:title" content="Valbix" />
-  <meta property="og:description" content="Herramienta profesional de valoración inteligente de vehículos usados." />
-  <meta property="og:image" content="img/valbix-logo.jpg" />
-  <link rel="stylesheet" href="styles/main.css" />
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Herramienta profesional de valoración inteligente de vehículos usados" />
+  <title>Valbix - Valoración Inteligente</title>
+  <link rel="stylesheet" href="./styles/main.css" />
 </head>
 <body>
   <header>
-    <img src="img/valbix-logo.jpg" alt="Valbix" width="160" />
-    <h1>Valbix</h1>
-    <p>Herramienta profesional de valoración inteligente de vehículos usados.</p>
-    <a href="/control-panel/" class="button">Acceso profesional</a>
+    <img src="https://valbix.com/logo.png" alt="Valbix logo" height="40" />
   </header>
 
   <main>
+    <h1>Valbix</h1>
+    <p>Herramienta profesional de valoración inteligente de vehículos usados.</p>
+    <a href="/control-panel/">Acceso profesional</a>
+
     <section>
       <h2>¿Por qué Valbix?</h2>
       <ul>
@@ -33,7 +29,7 @@
 
     <section>
       <h2>Solicita acceso</h2>
-      <form id="contactForm">
+      <form id="contact-form">
         <input type="text" name="nombre" placeholder="Tu nombre" required />
         <input type="email" name="email" placeholder="Tu email" required />
         <textarea name="mensaje" placeholder="Tu mensaje" required></textarea>
@@ -43,9 +39,9 @@
   </main>
 
   <footer>
-    <p>&copy; 2025 Valbix. Todos los derechos reservados.</p>
+    <p>© 2025 Valbix. Todos los derechos reservados.</p>
   </footer>
 
-  <script src="scripts/contact.js"></script>
+  <script src="./scripts/contact.js" type="module"></script>
 </body>
 </html>
