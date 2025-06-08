@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const result = await response.json();
 
-      if (result.ok) {
+      if (result.ok || result.success) {
         alert("Mensaje enviado correctamente.");
         form.reset();
       } else {
