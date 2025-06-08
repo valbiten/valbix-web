@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro - Valbix</title>
+  <link rel="stylesheet" href="../styles/main.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+</head>
+<body>
+  <h2>Crear cuenta</h2>
+  <form id="registerForm">
+    <input type="email" name="email" placeholder="Email" required>
+    <input type="password" name="password" placeholder="Contraseña" required>
+    <label>
+      <input type="checkbox" name="rgpd" required>
+      Acepto la política de tratamiento de datos
+    </label>
+    <button type="submit">Registrarme</button>
+  </form>
+  <p><a href="index.html">Volver al login</a></p>
+  <script src="../scripts/register.js"></script>
+</body>
+</html>
