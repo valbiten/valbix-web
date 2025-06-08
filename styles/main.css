@@ -1,66 +1,128 @@
+/* Estilos base y estructura global */
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f5f7fa;
-  color: #111;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9fbfd;
+  color: #222;
   line-height: 1.6;
 }
 
-header,
-main,
-footer {
-  padding: 20px;
+/* Encabezado y logo */
+header {
   text-align: center;
-  margin: 20px 0;
+  padding: 40px 20px 20px;
 }
 
 header img {
-  max-width: 140px;
+  max-width: 160px;
   margin-bottom: 10px;
 }
 
-a.button,
-button {
-  display: inline-block;
-  background-color: #111;
-  color: #fff;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
+h1 {
+  font-size: 2rem;
+  margin: 10px 0;
+}
+
+a {
+  color: #0a66c2;
   text-decoration: none;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
 }
 
-a.button:hover,
-button:hover {
-  background-color: #333;
+a:hover {
+  text-decoration: underline;
 }
 
+/* Secciones */
+main {
+  max-width: 960px;
+  margin: auto;
+  padding: 20px;
+}
+
+section {
+  margin: 40px 0;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+/* Lista de beneficios */
+ul {
+  padding-left: 20px;
+}
+
+li {
+  margin-bottom: 8px;
+}
+
+/* Formulario */
 form {
   display: flex;
-  flex-direction: column;
-  max-width: 400px;
-  margin: 0 auto;
+  flex-wrap: wrap;
+  gap: 10px;
+  max-width: 600px;
+  margin: auto;
+  justify-content: center;
 }
 
 input,
 textarea {
-  width: 90%;
-  max-width: 400px;
+  flex: 1 1 100%;
   padding: 12px;
-  margin: 10px auto;
-  display: block;
-  font-size: 1rem;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 6px;
+  font-size: 1rem;
   box-sizing: border-box;
 }
 
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+button {
+  background-color: #0a66c2;
+  color: #fff;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: #084a9a;
+}
+
+/* Footer */
 footer {
+  text-align: center;
+  padding: 30px 10px;
+  font-size: 0.9rem;
+  color: #777;
   margin-top: 40px;
-  font-size: 0.85em;
-  color: #666;
+}
+
+/* Responsive para móviles */
+@media (max-width: 600px) {
+  header img {
+    max-width: 120px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+  }
+
+  form {
+    flex-direction: column;
+  }
 }
