@@ -1,16 +1,17 @@
-# Valbix Web
+# Valbix — Plataforma de valoración de vehículos usados
 
-Este repositorio contiene la web de **Valbix** y un pequeño servidor en Node.js
-para gestionar el envío del formulario de contacto y autenticación a través de
-Supabase.
+Valbix es una herramienta profesional de valoración inteligente basada en IA, diseñada para concesionarios y particulares.
 
-## Puesta en marcha
+## Estructura del proyecto
+- `index.html` — Página de inicio pública
+- `scripts/` — Lógica de formularios y autenticación
+- `styles/` — Estilos principales
+- `server.js` — Servidor Node.js con nodemailer
+- `.env` — Variables sensibles para email
 
-1. Copia el archivo `.env.example` a `.env` y completa las variables de entorno
-   necesarias (Supabase y SMTP).
-2. Instala las dependencias con `npm install`.
-3. Inicia la aplicación con `npm start` y abre `http://localhost:3000` en tu
-   navegador.
+## Configuración inicial
+1. Ejecuta `npm install`
+2. Añade tu `.env` con las credenciales SMTP
+3. Ejecuta `node server.js` para lanzar el backend
 
-La web incluye un panel de control accesible desde `/control-panel/` con
-registro, inicio de sesión y recuperación de contraseña.
+---
